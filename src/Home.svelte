@@ -4,6 +4,7 @@
   import { caclulateTextarea } from "./utils/textarea-utils";
   import { RandomColorGenerator } from "./utils/random-color-generator";
   import { Loady } from "./utils/loady";
+  import { SimpleOverlayModel } from "./models/alert-model";
 
   const retroManager = RetroManager.instance;
   $: retroNameUserInput = "";
@@ -11,7 +12,7 @@
     Loady.on(async () => {
       await retroManager.createNewRetro(retroNameUserInput);
       navigate(`/retro?id=${retroManager.shareKeyString}`);
-    });
+    }, new SimpleOverlayModel("Oh no! 💩", "An error occured. Please try again."));
   }
 
   const baseColor = RandomColorGenerator.getRadmonColor();

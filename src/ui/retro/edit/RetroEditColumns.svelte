@@ -26,7 +26,7 @@
 </script>
 
 {#if retroEdit}
-  <div class="pt-12 flex flex-row">
+  <div class="flex flex-row">
     <div class="px-3 basis-1/2">
       <div
         class={`rounded bg-slate-100 p-2 uppercase text-base text-slate-600 font-semibold`}

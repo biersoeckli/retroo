@@ -8,7 +8,7 @@
   import RetroEditColumns from "./RetroEditColumns.svelte";
   import { RandomColorGenerator } from "../../../utils/random-color-generator";
   import { Loady } from "../../../utils/loady";
-import { SimpleOverlayModel } from "../../../models/alert-model";
+  import { SimpleOverlayModel } from "../../../models/alert-model";
 
   const retroManager = RetroManager.instance;
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +32,7 @@ import { SimpleOverlayModel } from "../../../models/alert-model";
     Loady.on(async () => {
       await retroManager.saveRetro();
       navigate("/retro?id=" + urlParams.get("id"));
-    });
+    }, new SimpleOverlayModel("Oh no! 💩", "An error occured. Please try again."));
   }
 </script>
 
@@ -61,9 +61,12 @@ import { SimpleOverlayModel } from "../../../models/alert-model";
               on:keyup={caclulateTextarea}
             />
           </div>
-          <RetroEditColumns />
+          <div class="font-bold text-slate-700 text-lg uppercase pt-12 pl-4">Column Settings</div>
 
-          <!-- -->
+          <div class="pt-5">
+            <RetroEditColumns />
+          </div>
+
           <div class="h-10" />
           <div
             class={`bg-${baseColor}-400 rounded-lg float-right p-2 w-fit cursor-pointer mt-3 hover:bg-${baseColor}-500 ease-in-out duration-200`}
@@ -84,7 +87,7 @@ import { SimpleOverlayModel } from "../../../models/alert-model";
             >
           </div>
 
-          <div class="h-10" />
+          <div class="h-16 md:h-10" />
         </div>
       </div>
     </div>
