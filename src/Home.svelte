@@ -72,7 +72,7 @@
             <div class="h-10" />
           {:else}
             <div class="text-xs text-slate-300 text-center mt-4">
-              (It's 100% 🆓 &nbsp;&nbsp;and 🔒)
+              🆓 and 🔒 Retro Boards
             </div>
           {/if}
         </div>
@@ -84,5 +84,5 @@
 <div
   class="bottom-6 absolute text-center text-xs text-slate-400 w-screen invisible md:visible"
 >
-  <p class="">Decentralized, End-To-End Encrypted, Peer-To-Peer Retro Boards</p>
+  <p class="">Decentralized, End-To-End Encrypted, Peer-To-Peer Retro Boards | <a href="https://github.com/biersoeckli/retroo">Github</a></p>
 </div>
