@@ -4,8 +4,11 @@
   import { RetroManager } from "../../business/retro-manager";
   import OverlayButton from "../components/OverlayButton.svelte";
   import ToggleSwitch from "../components/ToggleSwitch.svelte";
-import { DownloadUtils } from "../../utils/download-utils";
-import { SimpleOverlay } from "../../utils/alert-service";
+  import { DownloadUtils } from "../../utils/download-utils";
+  import { SimpleOverlay } from "../../utils/alert-service";
+  import { WritableService } from "../writable-services";
+  import { OverlayModel } from "../../models/overlay-model";
+  import ShareOverlay from "./components/ShareOverlay.svelte";
 
   const retroManager = RetroManager.instance;
   let editMode =
@@ -21,15 +24,19 @@ import { SimpleOverlay } from "../../utils/alert-service";
   }
 
   const actionButtons = new Map<string, () => void>()
-  .set("🖊  Edit", () => openEditMode())
-  .set('⬇️  Download', () => setTimeout(() => DownloadUtils.exportCurrentBody(), 500))
-  .set("👋  Leave", () => window.open("/", "_self"));
+    .set("🖊  Edit", () => openEditMode())
+    .set("💬  Share", () => WritableService.overlayService.set(new OverlayModel(ShareOverlay, new Map<string, () => Promise<void>>().set('CLOSE', undefined), retroManager.retro)))
+    .set("⬇️  Download", () => setTimeout(() => DownloadUtils.exportCurrentBody(), 500))
+    .set("👋  Leave", () => window.open("/", "_self"));
 
   function showSecurityAlert() {
-    SimpleOverlay.show("Hey there!",
-    "This is retroo. It's an End-To-End encrypted, Peer-To-Peer, decentraliced, open-source project to delight your retrospectives. The service is build on top of gun.js, Svelte and tailwindcss, hope you enjoy it 😁.");
+    SimpleOverlay.show(
+      "Hey there!",
+      "This is retroo. It's an End-To-End encrypted, Peer-To-Peer, decentraliced, <a href=\"https://github.com/biersoeckli/retroo\" class=\"underline\">open-source</a> project to delight your retrospectives. This site is build on top of gun.js, Svelte and tailwindcss, hope you enjoy it 😁."
+    );
   }
 </script>
+
 {#if editMode}
   <div class="absolute right-6">
     <div class="flex flex-row">

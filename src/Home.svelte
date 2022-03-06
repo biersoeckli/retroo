@@ -8,7 +8,7 @@
 
   const retroManager = RetroManager.instance;
   $: retroNameUserInput = "";
-  async function ccreateNewRetro() {
+  async function createNewRetro() {
     Loady.on(async () => {
       await retroManager.createNewRetro(retroNameUserInput);
       navigate(`/retro?id=${retroManager.shareKeyString}`);
@@ -52,7 +52,7 @@
           {#if retroNameUserInput}
             <div
               class="bg-green-400 rounded-lg float-right p-2 w-fit cursor-pointer mt-3 hover:bg-green-500 ease-in-out duration-200"
-              on:click={ccreateNewRetro}
+              on:click={createNewRetro}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,5 +84,5 @@
 <div
   class="bottom-6 absolute text-center text-xs text-slate-400 w-screen invisible md:visible"
 >
-  <p class="">Decentralized, End-To-End Encrypted, Peer-To-Peer Retro Boards | <a href="https://github.com/biersoeckli/retroo">Github</a></p>
+  <p class="">Decentralized, End-To-End Encrypted, Peer-To-Peer Retro Boards | <a href="https://github.com/biersoeckli/retroo" class="underline">Github</a></p>
 </div>
